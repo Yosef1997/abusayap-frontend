@@ -1,0 +1,174 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@200;300;400;600;700;800;900&display=swap');
+* {
+	font-family: 'Nunito Sans', sans-serif;
+}
+/* Text display */
+.text-display-lg {
+	font-size: 64px;
+}
+.text-display-md {
+	font-size: 48px;
+}
+.text-display-sm {
+	font-size: 32px;
+}
+.text-display-xs {
+	font-size: 24px;
+}
+/* Bold */
+.text-display-lg-bold {
+	font-weight: bold;
+	font-size: 64px;
+}
+.text-display-md-bold {
+	font-weight: bold;
+	font-size: 48px;
+}
+.text-display-sm-bold {
+	font-weight: bold;
+	font-size: 32px;
+}
+.text-display-xs-bold {
+	font-weight: bold;
+	font-size: 24px;
+}
+.text-display-xs-bold-22 {
+	font-weight: bold;
+	font-size: 22px;
+}
+
+/* Text size */
+.text-lg {
+	font-size: 24px;
+}
+.text-md {
+	font-size: 18px;
+}
+.text-sm {
+	font-size: 16px;
+}
+.text-xs {
+	font-size: 14px;
+}
+
+/* Link Text */
+.text-link-lg {
+	font-weight: 600;
+	font-size: 24px;
+}
+.text-link-md {
+	font-weight: 600;
+	font-size: 18px;
+}
+.text-link-sm {
+	font-weight: 600;
+	font-size: 16px;
+}
+.text-link-xs {
+	font-weight: 600;
+	font-size: 14px;
+}
+
+/* Text color */
+.text-color-title {
+	color: #14142b;
+}
+.text-color-body {
+	color: #4e4b66;
+}
+.text-color-label {
+	color: #6e7191;
+}
+.text-color-placeholder {
+	color: #a0a3bd;
+}
+.text-color-muted {
+	color: #aaaaaa;
+}
+
+/* Property color */
+.property-color-line {
+	color: #dedede;
+}
+.property-color-input-bg {
+	/* Grayscale / Input Background */
+
+	background: #eff0f7;
+	/* Input Background */
+
+	border: 1px solid #fcfdfe;
+}
+.property-color-bg {
+	/* Grayscale / Background */
+
+	background: #f7f7fc;
+	/* Background Color */
+
+	border: 1px solid #d6d8e7;
+}
+.property-color-off-white {
+	/* Off-White */
+
+	background: #fcfcfc;
+	/* Grayscale / Line */
+
+	border: 1px solid #d6d8e7;
+}
+
+/*=====  custom  ======*/
+.text-display-lg-bold-56 {
+	font-weight: bold;
+	font-size: 56px;
+}
+.text-xs-12 {
+	font-size: 12px;
+}
+.text-display-xs-bold-18 {
+	font-weight: bold;
+	font-size: 18px;
+}
+.text-display-xs-bold-16 {
+	font-weight: bold;
+	font-size: 16px;
+}
+.text-link-lg-26 {
+	font-weight: 600;
+	font-size: 26px;
+}
+.text-link-lg-48 {
+	font-weight: bold;
+	font-size: 48px;
+}
+.text-link-lg-20 {
+	font-weight: 600;
+	font-size: 20px;
+}
+.text-link-xs-12 {
+	font-weight: 600;
+	font-size: 12px;
+}
+.text-display-xs-bold-14 {
+	font-weight: bold;
+	font-size: 14px;
+}
+.text-300-12 {
+	font-weight: 300;
+	font-size: 12px;
+}
+.text-lg-20 {
+	font-size: 20px;
+}
+.text-xs-10 {
+	font-size: 10px;
+}
+
+
+// Import Bootstrap and its default variables
+// change the theme
+$primary: #00D16C;
+$secondary: #9DA6B5;
+$error: #FF5B37;
+$succes: #677CF4;
+$warning: #f4b740;
+
+@import "~bootstrap/scss/bootstrap.scss";

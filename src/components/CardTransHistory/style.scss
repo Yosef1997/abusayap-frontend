@@ -1,0 +1,12 @@
+#scroll {
+	display: inline-block;
+	margin-left: 10px;
+	text-decoration: none;
+}
+#scrollmenu {
+  overflow-x: auto;
+  height: 350px;
+}
+#scrollmenu::-webkit-scrollbar {
+	width: 0;
+}

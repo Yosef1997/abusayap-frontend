@@ -1,0 +1,41 @@
+@import '../../../assets/scss/variables';
+
+.inputWithIcon {
+  position: relative;
+
+  .form-control {
+    padding: 20px 40px;
+    outline: 0;
+    width: 100%;
+    border-width: 0 0 2px;
+    border-color: rgb(231, 231, 231);
+    margin: 8px 0;
+  }
+
+  .form-control:focus {
+    border-color: $primary;
+    transition: 0.4s;
+  }
+
+  .form-control:focus+svg {
+    color: $primary;
+  }
+
+  svg {
+    position: absolute;
+    top: 7px;
+    color: #A9A9A9;
+    transition: 0.3s;
+  }
+}
+
+.error {
+  .form-control:focus {
+    border-color: red;
+    transition: 0.4s;
+  }
+
+  .form-control:focus+svg {
+    color: red;
+  }
+}

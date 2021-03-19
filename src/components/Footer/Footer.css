@@ -1,0 +1,27 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@200;300;400;600;700;800;900&display=swap%27');
+
+
+.FooterContainer {
+  background-color: #00D16C;
+  padding: 50px 100px;
+}
+
+.FooterAbusayap {
+  width: 121px;
+}
+.FooterDetail {
+  font-family: 'Nunito Sans';
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 31px;
+  color: rgba(239, 239, 239, 0.75);
+  padding: 50px 0px;
+}
+.FooterCopyRight {
+  font-family: 'Nunito Sans';
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  color: rgba(239, 239, 239, 0.9);
+}

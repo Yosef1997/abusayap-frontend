@@ -1,0 +1,39 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@200;300;400;600;700;800;900&display=swap%27');
+
+.TopUpContainer {
+  background: #FFFFFF;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.05);
+  border-radius: 25px;
+  padding: 20px 0px;
+}
+.TopUpTitle {
+  font-family: 'Nunito Sans';
+  font-style: normal;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 25px;
+  color: #3A3D42;
+}
+.TopUpCard {
+  width: 790px;
+  height: 88px;
+  background: #FFFFFF;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.05);
+  border-radius: 10px;
+  margin-top: 20px;
+  padding: 30px 20px;
+} 
+.TopUpList {
+  font-family: 'Nunito Sans';
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 27px;
+  color: #7A7886;
+}
+.TopUpList span {
+  font-weight: bold;
+  font-size: 18px;
+  color: #00D16C;
+  margin-right: 20px;
+}

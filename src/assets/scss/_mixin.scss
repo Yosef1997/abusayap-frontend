@@ -1,0 +1,13 @@
+@mixin text-large {
+  font-weight: bold;
+  font-size: 24px;
+}
+
+@mixin text-large-18 {
+  font-weight: bold;
+  font-size: 18px;
+}
+
+@mixin text-medium {
+  font-size: 16px;
+}

@@ -1,0 +1,26 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@200;300;400;600;700;800;900&display=swap%27');
+
+.CarAboutApp {
+  height: 344px;
+  width: 367px;
+  background: #FFFFFF;
+  box-shadow: 0px 4px 250px rgba(172, 172, 172, 0.15);
+  border-radius: 25px;
+  text-align: center;
+  padding: 30px;
+}
+.CarAboutAppTittle {
+  font-family: 'Nunito Sans';
+  font-style: normal;
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 31px;
+  color: #3A3D42;  
+}
+.CarAboutAppDescrip {
+  font-family: 'Nunito Sans';
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 31px;
+}

@@ -1,0 +1,52 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@200;300;400;600;700;800;900&display=swap%27');
+
+.FeatureLandingContainer {
+  background-color: rgba(71, 58, 209, 0.06);
+}
+
+.FeatureLandingCol2 {
+  padding-top: 160px;
+}
+.FeatureLandingHeader {
+  font-family: 'Nunito Sans';
+  font-style: normal;
+  font-weight: 800;
+  font-size: 60px;
+  line-height: 93px;
+  color: #3A3D42;
+  margin-bottom: 50px;
+}
+
+.FeatureLandingHeader span{
+  color: #00D16C;
+  margin-left: 15px;
+}
+.FeatureLandingCard {
+  height: 127px;
+  width: 620px;
+  background: #FFFFFF;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.05);
+  border-radius: 25px;
+  padding: 30px 20px;
+  margin-bottom: 20px;
+}
+.FeatureLandingCardTitle {
+  font-family: 'Nunito Sans';
+  font-style: normal;
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 31px;
+  color: #3A3D42;
+}
+.FeatureLandingCardTitle span {
+  color: #00D16C;
+  margin-right: 10px;
+}
+.FeatureLandingCardDetail{
+  font-family: Nunito Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 31px;
+  color: rgba(58, 61, 66, 0.9);
+}

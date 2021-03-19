@@ -1,0 +1,27 @@
+@import '../../../assets/scss/variables';
+
+.searchIcon {
+  position: relative;
+  .form-control {
+    padding: 20px 60px;
+    outline: 0;
+    width: 100%;
+    background: rgba(58, 61, 66, 0.1);
+    border-radius: 12px;
+    margin: 8px 0;
+  }
+  .form-control:focus {
+    border-color: $primary;
+    transition: 0.4s;
+  }
+  .form-control:focus + i {
+    color: $primary;
+  }
+  i {
+    position: absolute;
+    top: 11px;
+    left: 3%;
+    color: #A9A9A9;
+    transition: 0.3s;
+  }
+} 

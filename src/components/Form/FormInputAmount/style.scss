@@ -1,0 +1,36 @@
+@import '../../../assets/scss/variables';
+
+.amountIcon {
+  position: relative;
+
+  .form-control[type=number] {
+    text-align: center;
+    font-size: 42px;
+    outline: 0;
+    color: $primary;
+    background: transparent;
+    border: none;
+    margin: auto 0;
+    -moz-appearance: textfield;
+  }
+
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  // .form-control[type=text] {
+  //   color: $primary;
+  // }
+  .form-control:focus {
+    border-color: $primary;
+    transition: 0.4s;
+  }
+}
+
+.error {
+  .form-control[type=number] {
+    color: red;
+  }
+}

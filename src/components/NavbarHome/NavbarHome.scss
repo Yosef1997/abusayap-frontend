@@ -1,0 +1,13 @@
+.img-avatar {
+  border-radius: 10px !important;
+  width: 56px;
+  height: 56px;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+.nav-home {
+  .dropdown-toggle::after {
+    content: none;
+  }
+}

@@ -1,0 +1,46 @@
+@import '../../assets/scss/mixin';
+
+.auth-img {
+  background: linear-gradient(#00D16C, #00D16C)
+			center no-repeat;
+	background-size: cover;
+	min-height: 100vh;
+}
+
+.text-title {
+	@include text-large();
+}
+
+.text-app {
+	@include text-medium();
+}
+
+.custom-shape-divider-top-1612942295 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+    transform: rotate(180deg);
+}
+
+.custom-shape-divider-top-1612942295 svg {
+    position: relative;
+    display: block;
+    width: calc(223% + 1.3px);
+    height: 315px;
+    transform: rotateY(180deg);
+}
+
+.custom-shape-divider-top-1612942295 .shape-fill {
+    fill: #00D16C;
+}
+
+/** For tablet devices **/
+@media (min-width: 768px) and (max-width: 1023px) {
+    .custom-shape-divider-top-1612942295 svg {
+        width: calc(187% + 1.3px);
+        height: 383px;
+    }
+}

@@ -1,0 +1,39 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@200;300;400;600;700;800;900&display=swap%27');
+
+.DetailTransferContainer {
+  background-color: white;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.05);
+  border-radius: 25px;
+  padding: 20px;
+}
+.DetailTransfer {
+  font-family: 'Nunito Sans';
+  font-style: normal;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 25px;
+  color: #3A3D42;
+}
+.DetailTransferCard {
+  background-color: #FFFFFF;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.05);
+  border-radius: 10px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+.DetailTransferHeader {
+  font-family: 'Nunito Sans';
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 22px;
+  color: #7A7886;
+}
+.DetailTransferFill {
+  font-family: 'Nunito Sans';
+  font-style: normal;
+  font-weight: bold;
+  font-size: 22px;
+  line-height: 30px;
+  color: #514F5B;
+}

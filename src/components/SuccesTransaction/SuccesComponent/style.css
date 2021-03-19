@@ -1,0 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@200;300;400;600;700;800;900&display=swap%27');
+
+.ResultFailed {
+  font-family: 'Nunito Sans';
+  font-style: normal;
+  font-weight: bold;
+  font-size: 22px;
+  line-height: 30px;
+  text-align: center;
+  color: #4D4B57;
+  margin: 40px 0px 20px ;
+}

@@ -1,0 +1,6 @@
+.PartnerRow {
+  display: flex;
+  justify-content: space-evenly;
+  padding: 100px 50px;
+  background-color: rgba(71, 58, 209, 0.06);
+}

@@ -1,0 +1,31 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@200;300;400;600;700;800;900&display=swap%27');
+
+.BtnDownloadShare {
+  background-color: rgba(99, 121, 244, 0.15);
+  box-shadow: 0px 6px 75px rgba(100, 87, 87, 0.05);
+  border-radius: 12px;
+  border: none;
+  height: 57px;
+  width: 57px;
+}
+.BtnDownloadShare i {
+  color: black;
+}
+.BtnDownloadInvoice {
+  background:rgba(99, 121, 244, 0.15);
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.05);
+  border-radius: 12px;
+  border: none;
+  color: #00D16C;
+  height: 57px;
+  width: 243px;
+}
+.BtnDownloadInvoice span {
+  margin-right: 10px;
+}
+.BtnDownloadHome {
+  height: 57px;
+  width: 197px;
+  background-color: #00D16C;
+  border-radius: 12px;
+}
