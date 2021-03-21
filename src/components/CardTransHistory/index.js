@@ -4,13 +4,13 @@ import { Link } from 'react-router-dom'
 import defaultProfile from '../../assets/images/default-image.png'
 
 import { connect } from 'react-redux'
-import { transactionHistory } from '../../redux/action/transaction'
+import { transactionHistoryNew } from '../../redux/action/transaction'
 
 import './style.scss'
 
 class CardTransHistory extends Component {
   async componentDidMount () {
-    await this.props.transactionHistory(this.props.auth.token)
+    await this.props.transactionHistoryNew(this.props.auth.token)
   }
   render () {
     return (
@@ -51,6 +51,6 @@ const mapStateToProps = state => ({
   transaction: state.transaction
 })
 
-const mapDispatchToProps = { transactionHistory }
+const mapDispatchToProps = { transactionHistoryNew }
 
 export default connect(mapStateToProps, mapDispatchToProps)(CardTransHistory)

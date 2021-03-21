@@ -12,13 +12,20 @@
     height: 80px;
     border-radius: 10px;
   }
+
   h1 {
     font-size: 24px;
     font-weight: bold;
   }
+
   p {
     font-size: 16px;
     color: #7A7886;
+  }
+
+  .text-error {
+    margin-bottom: 5px;
+    color: red;
   }
 
   .change-profile {
@@ -26,12 +33,15 @@
       input[type="file"] {
         display: none;
       }
+
       .edit-profile {
         margin-top: 10px;
         cursor: pointer;
+
         p {
           color: #7A7886;
         }
+
         i {
           color: #7A7886;
         }
@@ -41,6 +51,7 @@
 
   .menu-profile {
     margin-top: 10px;
+
     .card-menu-profile {
       background-color: #E5E8ED;
       border-radius: 10px;
@@ -54,6 +65,7 @@
       color: #7E7D84;
       text-decoration: none;
       border: none;
+
       h2 {
         font-size: 16px;
         font-weight: bold;
