@@ -3,7 +3,7 @@
 .amountIcon {
   position: relative;
 
-  .form-control[type=number] {
+  .form-control {
     text-align: center;
     font-size: 42px;
     outline: 0;
@@ -30,7 +30,7 @@
 }
 
 .error {
-  .form-control[type=number] {
+  .form-control {
     color: red;
   }
 }

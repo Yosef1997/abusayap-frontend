@@ -1,4 +1,5 @@
 import http from '../../helper/http'
+import qs from 'querystring'
 
 export const transfer = (token, idReceiver, amount, notes, status, dateTransaction, pin) => {
   return async dispatch => {
@@ -81,6 +82,32 @@ export const transactionHistory = (token, search, limit, page, sort, order) => {
         payload: ''
       })
       const response = await http(token).get(`transaction/history?search=${search !== undefined ? search : ''}&limit=${limit !== undefined ? limit : 4}&page=${page !== undefined ? page : 1}&sort=${sort !== undefined ? sort : 'id'}&order=${order !== undefined ? order : 'ASC'}`)
+      dispatch({
+        type: 'TRANSACTION_HISTORY',
+        payload: response.data.results,
+        pageInfo: response.data.pageInfo
+      })
+    } catch (err) {
+      const { message } = err.response.data
+      dispatch({
+        type: 'SET_TRANSACTION_MESSAGE',
+        payload: message
+      })
+    }
+  }
+}
+
+export const transactionHistoryNew = (token, cond) => {
+  return async dispatch => {
+    try {
+      const query = qs.stringify({
+        ...cond
+      })
+      dispatch({
+        type: 'SET_TRANSACTION_MESSAGE',
+        payload: ''
+      })
+      const response = await http(token).get(`transaction/history?${cond ? query : ''}`)
       dispatch({
         type: 'TRANSACTION_HISTORY',
         payload: response.data.results,

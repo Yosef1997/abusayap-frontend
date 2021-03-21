@@ -9,16 +9,35 @@ import { clearTransaction } from '../../redux/action/transaction'
 
 class Profile extends Component {
   state = {
-    isLoading: false
+    isLoading: false,
+    message: '',
+    cangePicture: false
   }
   uploadImage = async (value) => {
-    this.setState({ isLoading: true })
+    const FILE_SIZE = 500 * 1024
+    const SUPPORTED_FORMATS = [
+      'image/jpg',
+      'image/jpeg',
+      'image/gif',
+      'image/png'
+    ]
     const { token, user } = this.props.auth
-    await this.props.updateUser(token, user.id, { picture: (value) })
 
-    setTimeout(() => {
-      this.setState({ isLoading: false })
-    }, 1000)
+    console.log(SUPPORTED_FORMATS.indexOf(value.type))
+    if (FILE_SIZE < value.size) {
+      console.log('File to large')
+      await this.setState({ message: 'File to large' })
+    } else if (SUPPORTED_FORMATS.indexOf(value.type) === -1) {
+      console.log('File not compatibel')
+      await this.setState({ message: 'File not compatibel' })
+    } else {
+      this.setState({ isLoading: true })
+      await this.props.updateUser(token, user.id, { picture: (value) })
+      await this.setState({ isLoading: false, message: 'Update profile succsefully', cangePicture: true })
+    }
+    await setTimeout(() => {
+      this.setState({ message: '', cangePicture: false })
+    }, 3000)
   }
   logout = () => {
     this.props.logout()
@@ -33,6 +52,9 @@ class Profile extends Component {
         <img className="img-avatar"
           src={this.props.auth.user.picture ? `http://localhost:5000/upload/profile/${picture}` : defaultProfile}
           alt="photo-profile" />
+        {this.state.message && (
+          <p className={this.state.cangePicture ? 'text-success' : 'text-error'}>{this.state.message}</p>
+        )}
         <div className="change-profile">
           <label>
             <input type="file" onChange={(e) => this.uploadImage(e.target.files[0])} />

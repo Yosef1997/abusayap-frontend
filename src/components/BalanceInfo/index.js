@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import './index.css'
 import { Container, Row, Col } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
-
+import rupiah from '../../helper/rupiah'
 import { connect } from 'react-redux'
 import { detailUser } from '../../redux/action/user'
 
@@ -16,7 +16,7 @@ class index extends Component {
         <Row className="w-100 h-100">
           <Col lg={9} className="BalanceInfoCol">
             <div className="BalanceInfoHeader" style={{ fontWeight: 700, color: 'white' }}>Balance</div>
-            <div className="BalanceInfoAmount">{this.props.user.results ? `Rp. ${this.props.user.results.balance}` : 'Rp. 0'}</div>
+            <div className="BalanceInfoAmount">{this.props.user.results ? `Rp. ${rupiah(this.props.user.results.balance)}` : 'Rp. 0'}</div>
             <div className="BalanceInfoPhone" style={{ fontWeight: 700, color: 'white' }}>+62 {this.props.auth.user.phoneNumber !== null ? this.props.auth.user.phoneNumber : 'No PhoneNumber'}</div>
           </Col>
           <Col className="BalanceInfoCol">

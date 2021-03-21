@@ -2,9 +2,11 @@ import React, { Component } from 'react'
 import { Card, Image, Button, Form, Spinner } from 'react-bootstrap'
 import FormSearch from '../Form/FormSearch'
 import defaultProfile from '../../assets/images/default-image.png'
-
+import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { transactionHistory } from '../../redux/action/transaction'
+import { transactionHistory, transactionHistoryNew } from '../../redux/action/transaction'
+import rupiah from '../../helper/rupiah'
+import qs from 'querystring'
 
 class TransactionHistory extends Component {
   state = {
@@ -18,62 +20,117 @@ class TransactionHistory extends Component {
     icSort: 'up'
   }
   async componentDidMount () {
-    await this.props.transactionHistory(this.props.auth.token, this.state.search, this.state.limit)
+    const { token } = this.props.auth
+    const { search } = this.props.location
+    const query = qs.parse(search.replace('?', ''))
+    await this.props.transactionHistoryNew(token, query)
   }
-  changeText = (event) => {
-    this.setState({ [event.target.name]: event.target.value }, async () => {
-      await this.props.transactionHistory(this.props.auth.token, this.state.search, this.state.limit)
-      if (this.props.transaction.transactionHistory) {
-        this.setState({ message: '' })
-      } else {
-        this.setState({ message: 'No Transaction' })
-      }
+
+  changeText = async (event) => {
+    const { token } = this.props.auth
+    const { search } = this.props.location
+    const query = qs.parse(search.replace('?', ''))
+    await this.setState({ isLoading: true })
+    delete query.page
+    if (event.target.value) {
+      query.search = event.target.value
+    } else {
+      delete query.search
+    }
+    await this.props.history.push({
+      search: qs.stringify(query)
     })
+    await this.props.transactionHistoryNew(token, query)
+    await this.setState({ isLoading: false })
+  }
+
+  order = async (value) => {
+    const { token } = this.props.auth
+    const { search } = this.props.location
+    const query = qs.parse(search.replace('?', ''))
+    delete query.page
+    await this.setState({ isLoading: true })
+    if (this.state.icSort === 'down') {
+      await this.setState({ icSort: 'up' })
+      query.sort = value
+      query.order = 'DESC'
+    } else {
+      await this.setState({ icSort: 'down' })
+      query.sort = value
+      query.order = 'ASC'
+    }
+    await this.props.history.push({
+      search: qs.stringify(query)
+    })
+    await this.props.transactionHistoryNew(token, query)
+    await this.setState({ isLoading: false })
   }
   next = async () => {
-    if (this.state.page !== this.props.transaction.pageInfo.totalPage) {
-      this.setState({ isLoading: true })
-      await this.props.transactionHistory(this.props.auth.token, this.state.search, this.state.limit, this.state.page + 1, this.state.sort, this.state.order)
-      this.setState({
-        isLoading: false,
-        page: this.state.page + 1
+    const { token } = this.props.auth
+    const { pageInfo } = this.props.transaction
+    const { search } = this.props.location
+    const query = qs.parse(search.replace('?', ''))
+    delete query.page
+    if (pageInfo.nextLink) {
+      await this.setState({ isLoading: true })
+      query.page = pageInfo.currentPage + 1
+      await this.props.history.push({
+        search: qs.stringify(query)
       })
-    } else {
-      this.setState({
-        page: this.state.page
-      })
+      await this.props.transactionHistoryNew(token, query)
+      await this.setState({ isLoading: false })
     }
   }
   prev = async () => {
-    if (this.state.page > 1) {
-      this.setState({ isLoading: true })
-      await this.props.transactionHistory(this.props.auth.token, this.state.search, this.state.limit, this.state.page - 1, this.state.sort, this.state.order)
-      this.setState({
-        isLoading: false,
-        page: this.state.page - 1
+    const { token } = this.props.auth
+    const { pageInfo } = this.props.transaction
+    const { search } = this.props.location
+    const query = qs.parse(search.replace('?', ''))
+    if (pageInfo.prevLink) {
+      await this.setState({ isLoading: true })
+      query.page = pageInfo.currentPage - 1
+      await this.props.history.push({
+        search: qs.stringify(query)
       })
-    } else {
-      this.setState({
-        page: this.state.page
-      })
+      await this.props.transactionHistoryNew(token, query)
+      await this.setState({ isLoading: false })
     }
   }
-  order = async (value) => {
-    this.setState({ isLoading: true })
-    if (this.state.icSort === 'down') {
-      this.setState({ icSort: 'up', isLoading: false, order: value, sort: 'DESC' })
-      await this.props.transactionHistory(this.props.auth.token, this.state.search, this.state.limit, this.state.page, value, 'DESC')
-    } else {
-      this.setState({ icSort: 'down', isLoading: false, order: value, sort: 'ASC' })
-      await this.props.transactionHistory(this.props.auth.token, this.state.search, this.state.limit, this.state.page, value, 'ASC')
-    }
-  }
+  // next = async () => {
+  //   if (this.state.page !== this.props.transaction.pageInfo.totalPage) {
+  //     this.setState({ isLoading: true })
+  //     await this.props.transactionHistory(this.props.auth.token, this.state.search, this.state.limit, this.state.page + 1, this.state.sort, this.state.order)
+  //     this.setState({
+  //       isLoading: false,
+  //       page: this.state.page + 1
+  //     })
+  //   } else {
+  //     this.setState({
+  //       page: this.state.page
+  //     })
+  //   }
+  // }
+  // prev = async () => {
+  //   if (this.state.page > 1) {
+  //     this.setState({ isLoading: true })
+  //     await this.props.transactionHistory(this.props.auth.token, this.state.search, this.state.limit, this.state.page - 1, this.state.sort, this.state.order)
+  //     this.setState({
+  //       isLoading: false,
+  //       page: this.state.page - 1
+  //     })
+  //   } else {
+  //     this.setState({
+  //       page: this.state.page
+  //     })
+  //   }
+  // }
+
   render () {
-    console.log(this.props.transaction.transactionHistory)
+    const { pageInfo } = this.props.transaction
     return (
       <Card className="card-menu border-0">
         <Card.Body>
-          <p className="text-display-xs-bold-18">Transaction History <i className={`fa fa-sort-${this.state.icSort}`} onClick={() => { this.order('dateTransaction') }} /></p>
+          <p className="text-display-xs-bold-18">Transaction History <i className={`fa fa-sort-${this.state.icSort}`} style={{ cursor: 'pointer' }} onClick={() => { this.order('dateTransaction') }} /></p>
           <Form className="my-3">
             <FormSearch group="searchIcon" type="text" name="search" onChange={(event) => this.changeText(event)} placeholder="Search receiver here" className="ContactInputSearch">
               <i className="fa fa-search" aria-hidden="true"></i>
@@ -86,14 +143,14 @@ class TransactionHistory extends Component {
                   <div key={item.id}>
                     <div className="d-flex justify-content-between pt-3">
                       <div className="d-flex justify-content-center align-content-center">
-                          <Image src={item.picture ? `http://localhost:5000/upload/profile/${item.picture}` : defaultProfile} width={56} height={56} className="img-avatar mr-3"/>
+                        <Image src={item.picture ? `http://localhost:5000/upload/profile/${item.picture}` : defaultProfile} width={56} height={56} className="img-avatar mr-3" />
                         <div>
                           <p className="text-display-xs-bold-16 mb-2">{item.name}</p>
                           <p className="text-link-xs text-color-label">{item.status}</p>
                         </div>
                       </div>
                       <p className={`text-right ${item.userAs === 'sender' ? 'text-danger' : 'text-primary'} text-display-xs-bold-16`}>
-                        {item.userAs === 'sender' ? '-' : '+'}Rp {item.amount}
+                        {item.userAs === 'sender' ? '-' : '+'}Rp {rupiah(item.amount)}
                       </p>
                     </div>
                   </div>
@@ -106,11 +163,17 @@ class TransactionHistory extends Component {
               {`Total data ${this.props.transaction.transactionHistory ? this.props.transaction.pageInfo.totalData : '0'}`}
             </div>
             <div>
-              <Button className="btn outline-primary mr-3" onClick={this.prev}>Prev Link</Button>
-              <Button className="btn outline-primary" onClick={this.next}>Next Link</Button>
+              <Button className="btn outline-primary mr-3" onClick={this.prev}
+                style={!pageInfo.prevLink ? { backgroundColor: '#64E2A5' } : null}
+                disabled={!pageInfo.prevLink}
+              >Prev Link</Button>
+              <Button className="btn outline-primary" onClick={this.next}
+                style={!pageInfo.nextLink ? { backgroundColor: '#64E2A5' } : null}
+                disabled={!pageInfo.nextLink}
+              >Next Link</Button>
             </div>
             <div className="text-300-12">
-              {`Current Page ${this.state.page} Total Page ${this.props.transaction.transactionHistory ? this.props.transaction.pageInfo.totalPage : '0'}`}
+              {`Current Page ${pageInfo.currentPage} Total Page ${this.props.transaction.transactionHistory ? this.props.transaction.pageInfo.totalPage : '0'}`}
             </div>
           </div>
         </Card.Body>
@@ -124,6 +187,6 @@ const mapStateToProps = state => ({
   transaction: state.transaction
 })
 
-const mapDispatchToProps = { transactionHistory }
+const mapDispatchToProps = { transactionHistory, transactionHistoryNew }
 
-export default connect(mapStateToProps, mapDispatchToProps)(TransactionHistory)
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(TransactionHistory))
