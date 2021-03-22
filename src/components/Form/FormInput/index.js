@@ -3,7 +3,7 @@ import { Form } from 'react-bootstrap'
 import './style.scss'
 
 const FormInput = (props) => {
-  const { div, children, group, name, type, controlId, placeholder, isValid, onChange, defaultValue, value, onBlur } = props
+  const { div, children, group, name, type, controlId, placeholder, isValid, onChange, defaultValue, value, onBlur, onKeyUp } = props
   return (
     <div className={div}>
       <Form.Group className={group} controlId={controlId}>
@@ -18,6 +18,7 @@ const FormInput = (props) => {
           onBlur={onBlur}
           isValid={isValid}
           required
+          onKeyUp={onKeyUp}
         />
         {children}
       </Form.Group>

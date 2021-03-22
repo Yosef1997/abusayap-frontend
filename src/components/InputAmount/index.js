@@ -9,6 +9,7 @@ import { Formik, ErrorMessage } from 'formik'
 import { connect } from 'react-redux'
 import { detailUser } from '../../redux/action/user'
 import { confirmation } from '../../redux/action/transaction'
+import rupiah from '../../helper/rupiah'
 const errorMessage = {
   color: 'red',
   textAlign: 'center'
@@ -29,11 +30,12 @@ class index extends Component {
   amountValidation (values) {
     const errors = {}
     const { amountBelance } = this.state
-    if (!values.amount) {
+    const amount = Number(values.amount.replace(/[^0-9]/g, ''))
+    if (!amount) {
       errors.amount = 'Amount Required'
-    } else if (values.amount > amountBelance) {
+    } else if (amount > amountBelance) {
       errors.amount = 'Balence not enough'
-    } else if (values.amount < 5000) {
+    } else if (amount < 5000) {
       errors.amount = 'Minimun Transfer Rp. 5000'
     }
 
@@ -49,6 +51,9 @@ class index extends Component {
   transaction = async (values) => {
     await this.props.confirmation({ ...values, ...this.props.transaction.receiver, amountBalance: this.state.amountBelance - values.amount, dateTransaction: date, status: 'Transfer' })
     this.props.history.push('/home-page/contact/input-amount/detail-transfer')
+  }
+  handleKeyUp = (values) => {
+    console.log(rupiah(values.target.value))
   }
 
   render () {
@@ -84,15 +89,16 @@ class index extends Component {
                 isSubmitting
               }) => (
                 <Form className="my-3" onSubmit={handleSubmit}>
-                  <FormInputAmount type="number" placeholder="0.00"
+                  <FormInputAmount type="text" placeholder="0.00"
                     group={`amountIcon ${touched.amount && errors.amount ? 'error' : null}`}
                     name='amount'
-                    onChange={handleChange}
+                    onChange={values => handleChange(values)}
                     onBlur={handleBlur}
-                    value={values.amount}
+                    value={values.amount === '' || values.amount === 'Rp. ' ? '' : `Rp. ${rupiah(values.amount)}`}
+                    onKeyUp={this.handleKeyUp}
                   />
                   <ErrorMessage name="amount" component="div" style={errorMessage} />
-                  <div className="InputAmountBalance">{this.state.amountBelance !== null ? `Rp ${this.state.amountBelance} Available` : 'Loading...'} </div>
+                  <div className="InputAmountBalance">{this.state.amountBelance !== null ? `Rp ${rupiah(this.state.amountBelance)} Available` : 'Loading...'} </div>
                   <FormInput
                     div="mx-auto col-7 py-5"
                     type="text" placeholder="For buying some socks"
@@ -103,7 +109,7 @@ class index extends Component {
                     value={values.note}
                   >
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" className="bi bi-pen" viewBox="0 0 16 16">
-                      <path d="M13.498.795l.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001zm-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708l-1.585-1.585z"/>
+                      <path d="M13.498.795l.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001zm-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708l-1.585-1.585z" />
                     </svg>
                     <ErrorMessage name="note" component="div" style={errorMessage} />
                   </FormInput>
