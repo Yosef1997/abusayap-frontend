@@ -1,0 +1,12 @@
+.accept {
+  font-size: 16px;
+  color: #00D16C;
+  cursor: pointer;
+  text-align: center;
+}
+.reject {
+  font-size: 16px;
+  color: #FF5B37;
+  cursor: pointer;
+  text-align: center;
+}

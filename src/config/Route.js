@@ -14,6 +14,7 @@ import LandingPage from '../pages/LandingPage'
 import Home from '../pages/HomePage'
 import Pin from '../pages/PinSuccessPage'
 import CreateNewPassword from '../pages/CreateNewPasswordPage'
+import Admin from '../pages/Admin'
 
 export default class App extends Component {
   render () {
@@ -24,6 +25,7 @@ export default class App extends Component {
           <BrowserRouter>
             <ScrollToTop />
             <Switch>
+              <Route path="/Admin" component={Admin} />
               <Route path="/" exact component={LandingPage} />
               <PublicRoute restricted={true} path="/login" component={Login} />
               <PublicRoute restricted={true} path="/sign-up" component={SignUp} />

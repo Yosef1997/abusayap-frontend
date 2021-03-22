@@ -19,7 +19,7 @@ class NavbarHome extends Component {
         <Nav className="ml-auto">
           <Nav.Link>
             <Image
-              src={this.props.auth.user.picture ? `http://localhost:5000/upload/profile/${this.props.auth.user.picture}` : defaultProfile}
+              src={this.props.auth.user.picture ? `http://localhost:8080/upload/profile/${this.props.auth.user.picture}` : defaultProfile}
               height={52}
               className="img-avatar"
             />
