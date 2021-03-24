@@ -100,9 +100,11 @@ export const transactionHistory = (token, search, limit, page, sort, order) => {
 export const transactionHistoryNew = (token, cond) => {
   return async dispatch => {
     try {
-      const query = qs.stringify({
-        ...cond
-      })
+      const query = cond
+        ? qs.stringify({
+          ...cond
+        })
+        : {}
       dispatch({
         type: 'SET_TRANSACTION_MESSAGE',
         payload: ''
@@ -114,6 +116,7 @@ export const transactionHistoryNew = (token, cond) => {
         pageInfo: response.data.pageInfo
       })
     } catch (err) {
+      console.log(err)
       const { message } = err.response.data
       dispatch({
         type: 'SET_TRANSACTION_MESSAGE',

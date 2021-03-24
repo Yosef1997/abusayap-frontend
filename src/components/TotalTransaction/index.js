@@ -6,6 +6,7 @@ import MyChart from '../Chart'
 
 import { connect } from 'react-redux'
 import { amountTransaction } from '../../redux/action/transaction'
+import rupiah from '../../helper/rupiah'
 
 class TotalTransaction extends Component {
   async componentDidMount () {
@@ -17,14 +18,14 @@ class TotalTransaction extends Component {
         <Card.Body>
           <Row className="pb-5">
             <Col>
-              <Image src={ArrowUp} width={28}/>
+              <Image src={ArrowUp} width={28} />
               <p className="text-xs my-2">Income</p>
-              <p className="text-display-xs-bold-18 m-0">{this.props.transaction.amountTransaction ? `RP ${this.props.transaction.amountTransaction[0].income !== null ? this.props.transaction.amountTransaction[0].income : '0'}` : 'RP 0'}</p>
+              <p className="text-display-xs-bold-18 m-0">{this.props.transaction.amountTransaction ? `RP ${this.props.transaction.amountTransaction[0].income !== null ? rupiah(this.props.transaction.amountTransaction[0].income) : '0'}` : 'RP 0'}</p>
             </Col>
             <Col>
-              <Image src={ArrowDown} width={28}/>
+              <Image src={ArrowDown} width={28} />
               <p className="text-xs my-2">Expense</p>
-              <p className="text-display-xs-bold-18 m-0">{this.props.transaction.amountTransaction ? `RP ${this.props.transaction.amountTransaction[0].expense !== null ? this.props.transaction.amountTransaction[0].expense : '0'}` : 'RP 0'}</p>
+              <p className="text-display-xs-bold-18 m-0">{this.props.transaction.amountTransaction ? `RP ${this.props.transaction.amountTransaction[0].expense !== null ? rupiah(this.props.transaction.amountTransaction[0].expense) : '0'}` : 'RP 0'}</p>
             </Col>
           </Row>
           <MyChart />

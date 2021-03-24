@@ -6,6 +6,7 @@ import hardSet from 'redux-persist/lib/stateReconciler/hardSet'
 import authReducer from './auth'
 import transactionReducer from './transaction'
 import userReducer from './user'
+import topUpReducer from './topUp'
 
 const authConfig = {
   key: 'authReducer',
@@ -22,7 +23,8 @@ const transactionConfig = {
 const reducer = combineReducers({
   auth: persistReducer(authConfig, authReducer),
   transaction: persistReducer(transactionConfig, transactionReducer),
-  user: userReducer
+  user: userReducer,
+  topUp: topUpReducer
 })
 
 export default reducer

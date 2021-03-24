@@ -10,11 +10,6 @@ import qs from 'querystring'
 
 class TransactionHistory extends Component {
   state = {
-    search: '',
-    limit: 4,
-    page: 1,
-    sort: '',
-    order: '',
     isLoading: false,
     message: '',
     icSort: 'up'
@@ -96,34 +91,6 @@ class TransactionHistory extends Component {
       await this.setState({ isLoading: false })
     }
   }
-  // next = async () => {
-  //   if (this.state.page !== this.props.transaction.pageInfo.totalPage) {
-  //     this.setState({ isLoading: true })
-  //     await this.props.transactionHistory(this.props.auth.token, this.state.search, this.state.limit, this.state.page + 1, this.state.sort, this.state.order)
-  //     this.setState({
-  //       isLoading: false,
-  //       page: this.state.page + 1
-  //     })
-  //   } else {
-  //     this.setState({
-  //       page: this.state.page
-  //     })
-  //   }
-  // }
-  // prev = async () => {
-  //   if (this.state.page > 1) {
-  //     this.setState({ isLoading: true })
-  //     await this.props.transactionHistory(this.props.auth.token, this.state.search, this.state.limit, this.state.page - 1, this.state.sort, this.state.order)
-  //     this.setState({
-  //       isLoading: false,
-  //       page: this.state.page - 1
-  //     })
-  //   } else {
-  //     this.setState({
-  //       page: this.state.page
-  //     })
-  //   }
-  // }
 
   render () {
     const { pageInfo } = this.props.transaction
@@ -164,11 +131,9 @@ class TransactionHistory extends Component {
             </div>
             <div>
               <Button className="btn outline-primary mr-3" onClick={this.prev}
-                style={!pageInfo.prevLink ? { backgroundColor: '#64E2A5' } : null}
                 disabled={!pageInfo.prevLink}
               >Prev Link</Button>
               <Button className="btn outline-primary" onClick={this.next}
-                style={!pageInfo.nextLink ? { backgroundColor: '#64E2A5' } : null}
                 disabled={!pageInfo.nextLink}
               >Next Link</Button>
             </div>

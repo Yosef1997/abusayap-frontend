@@ -6,6 +6,7 @@ import CardContact from '../CardContact'
 import SuccessTransaction from '../SuccesTransaction/SuccesComponent'
 import SuccessButton from '../SuccesTransaction/SuccesButton'
 import Moment from 'react-moment'
+import rupiah from '../../helper/rupiah'
 
 class index extends Component {
   render () {
@@ -19,11 +20,11 @@ class index extends Component {
 
             <div className="DetailTransferCard mt-5">
               <div className="DetailTransferHeader">Amount</div>
-              <div className="DetailTransferFill">Rp {this.props.transaction.results.amount}</div>
+              <div className="DetailTransferFill">Rp {rupiah(this.props.transaction.results.amount)}</div>
             </div>
             <div className="DetailTransferCard">
               <div className="DetailTransferHeader">Balance Left</div>
-              <div className="DetailTransferFill">Rp {this.props.transaction.results.balance}</div>
+              <div className="DetailTransferFill">Rp {rupiah(this.props.transaction.results.balance)}</div>
             </div>
             <div className="DetailTransferCard">
               <div className="DetailTransferHeader">Date & Time</div>

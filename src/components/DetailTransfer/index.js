@@ -9,6 +9,7 @@ import moment from 'moment'
 import { transfer } from '../../redux/action/transaction'
 import { connect } from 'react-redux'
 import Moment from 'react-moment'
+import rupiah from '../../helper/rupiah'
 
 class index extends Component {
   state = {
@@ -47,11 +48,11 @@ class index extends Component {
             <div className="DetailTransfer mb-3">Details</div>
             <div className="DetailTransferCard">
               <div className="DetailTransferHeader">Amount</div>
-              <div className="DetailTransferFill">Rp. {this.props.transaction.confirmation.amount}</div>
+              <div className="DetailTransferFill">Rp. {rupiah(this.props.transaction.confirmation.amount)}</div>
             </div>
             <div className="DetailTransferCard">
               <div className="DetailTransferHeader">Balance Left</div>
-              <div className="DetailTransferFill">Rp. {this.props.transaction.confirmation.amountBalance}</div>
+              <div className="DetailTransferFill">Rp. {rupiah(this.props.transaction.confirmation.amountBalance)}</div>
             </div>
             <div className="DetailTransferCard">
               <div className="DetailTransferHeader">Date & Time</div>
@@ -64,35 +65,35 @@ class index extends Component {
             <div className="text-right my-4">
               <ButtonCustom onClick={this.handleShow} >Continue</ButtonCustom>
               <Modal show={this.state.show} onHide={this.handleClose}>
-              <Modal.Header closeButton>
-                <Modal.Title>Enter PIN to Transfer</Modal.Title>
-              </Modal.Header>
-              <Modal.Body>
-                <div>
-                  Enter your 6 digits PIN for confirmation <br />
+                <Modal.Header closeButton>
+                  <Modal.Title>Enter PIN to Transfer</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                  <div>
+                    Enter your 6 digits PIN for confirmation <br />
                   to continue transferring money.
                 </div>
-                <div className="d-flex justify-content-center align-content-center pt-4 pb-5">
-                  <PinInput
-                    length={6}
-                    initialValue=""
-                    onChange={(value) => this.changePin(value)}
-                    type="numeric"
-                    inputMode="number"
-                    style={{ padding: '10px' }}
-                    inputStyle={{ borderColor: '#9DA6B5', borderRadius: '10px' }}
-                    inputFocusStyle={{ borderColor: '#00D16C' }}
-                    autoSelect={true}
-                    regexCriteria={/^[ A-Za-z0-9_@./#&+-]*$/}
-                  />
-                </div>
-              </Modal.Body>
-              <Modal.Footer>
-                <Button onClick={() => this.transfer()}>
-                  Continue
+                  <div className="d-flex justify-content-center align-content-center pt-4 pb-5">
+                    <PinInput
+                      length={6}
+                      initialValue=""
+                      onChange={(value) => this.changePin(value)}
+                      type="numeric"
+                      inputMode="number"
+                      style={{ padding: '10px' }}
+                      inputStyle={{ borderColor: '#9DA6B5', borderRadius: '10px' }}
+                      inputFocusStyle={{ borderColor: '#00D16C' }}
+                      autoSelect={true}
+                      regexCriteria={/^[ A-Za-z0-9_@./#&+-]*$/}
+                    />
+                  </div>
+                </Modal.Body>
+                <Modal.Footer>
+                  <Button onClick={() => this.transfer()}>
+                    Continue
                 </Button>
-              </Modal.Footer>
-            </Modal>
+                </Modal.Footer>
+              </Modal>
             </div>
           </Col>
         </Row>

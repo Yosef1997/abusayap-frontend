@@ -6,6 +6,7 @@ import { Spinner } from 'react-bootstrap'
 import { connect } from 'react-redux'
 import { updateUser, logout } from '../../redux/action/auth'
 import { clearTransaction } from '../../redux/action/transaction'
+const { REACT_APP_API_URL: API_URL } = process.env
 
 class Profile extends Component {
   state = {
@@ -50,7 +51,7 @@ class Profile extends Component {
     return (
       <div className="card-profile">
         <img className="img-avatar"
-          src={this.props.auth.user.picture ? `http://localhost:5000/upload/profile/${picture}` : defaultProfile}
+          src={this.props.auth.user.picture ? `${API_URL}upload/profile/${picture}` : defaultProfile}
           alt="photo-profile" />
         {this.state.message && (
           <p className={this.state.cangePicture ? 'text-success' : 'text-error'}>{this.state.message}</p>

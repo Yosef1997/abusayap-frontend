@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Card, Image } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import defaultProfile from '../../assets/images/default-image.png'
-
+import rupiah from '../../helper/rupiah'
 import { connect } from 'react-redux'
 import { transactionHistoryNew } from '../../redux/action/transaction'
 
@@ -11,6 +11,7 @@ import './style.scss'
 class CardTransHistory extends Component {
   async componentDidMount () {
     await this.props.transactionHistoryNew(this.props.auth.token)
+    await console.log(this.props.transaction.transactionHistory)
   }
   render () {
     return (
@@ -33,7 +34,7 @@ class CardTransHistory extends Component {
                       </div>
                     </div>
                     <p className={`text-right ${item.userAs === 'sender' ? 'text-danger' : 'text-primary'} text-display-xs-bold-16`}>
-                      {item.userAs === 'sender' ? '-' : '+'}Rp {item.amount}
+                      {item.userAs === 'sender' ? '-' : '+'}Rp {rupiah(item.amount)}
                     </p>
                   </div>
                 </div>

@@ -2,13 +2,23 @@ import React from 'react'
 import { Route, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 
-const PrivateRoute = ({ component: Component, auth, ...rest }) => {
+const PrivateRoute = ({ component: Component, auth, role, ...rest }) => {
   return (
-    <Route {...rest} render={props => (
-      auth.token
-        ? <Component {...props} />
-        : <Redirect to='/login' />
-    )} />
+    <Route {...rest} render={props => {
+      if (role === 'ADMIN') {
+        if (auth.token && auth.user.role === 1) {
+          return <Component {...props} />
+        } else {
+          return <Redirect to='/home-page' />
+        }
+      } else {
+        if (auth.token) {
+          return <Component {...props} />
+        } else {
+          return <Redirect to='/login' />
+        }
+      }
+    }} />
   )
 }
 

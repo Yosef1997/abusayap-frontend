@@ -25,12 +25,12 @@ export default class App extends Component {
           <BrowserRouter>
             <ScrollToTop />
             <Switch>
-              <Route path="/Admin" component={Admin} />
               <Route path="/" exact component={LandingPage} />
               <PublicRoute restricted={true} path="/login" component={Login} />
               <PublicRoute restricted={true} path="/sign-up" component={SignUp} />
               <PublicRoute restricted={true} path="/create-pin/:id" component={CreatePin} />
               <PublicRoute restricted={true} path="/reset-password" component={ResetPassword} />
+              <PrivateRoute role={'ADMIN'} path="/Admin" component={Admin} />
               <PrivateRoute path="/home-page" component={Home} />
               <PublicRoute restricted={true} path="/pin-success" component={Pin} />
               <PublicRoute restricted={true} path="/create-new-password/:token" component={CreateNewPassword} />
