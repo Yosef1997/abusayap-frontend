@@ -29,20 +29,21 @@ class Login extends Component {
     this.setState({ isLoading: true })
     await this.props.login(values.email, values.password)
     if (this.props.auth.token) {
+      console.log(this.props.auth.user.token)
       if (this.props.auth.user.role === 1) {
         if (this.props.location.state === undefined) {
-          this.setState({ isLoading: false })
-          this.props.history.push('/admin')
+          await this.setState({ isLoading: false })
+          return this.props.history.push('/admin')
         } else {
-          this.setState({ isLoading: false })
-          this.props.history.push((this.props.location.state.from && this.props.location.state.from.pathname))
+          await this.setState({ isLoading: false })
+          return this.props.history.push((this.props.location.state.from && this.props.location.state.from.pathname))
         }
       } else {
         if (this.props.location.state === undefined) {
-          this.setState({ isLoading: false })
-          this.props.history.push('/home-page')
+          await this.setState({ isLoading: false })
+          return this.props.history.push('/home-page')
         } else {
-          this.props.history.push((this.props.location.state.from && this.props.location.state.from.pathname))
+          return this.props.history.push((this.props.location.state.from && this.props.location.state.from.pathname))
         }
       }
     } else {

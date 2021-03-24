@@ -2,6 +2,7 @@ import React from 'react'
 import { Media, Image } from 'react-bootstrap'
 import defaultProfile from '../../assets/images/default-image.png'
 import './CardContact.css'
+const { REACT_APP_API_URL: API_URL } = process.env
 
 const CardContact = (props) => {
   return (
@@ -12,7 +13,7 @@ const CardContact = (props) => {
             width={70}
             height={70}
             className="mr-3 imgContact"
-            src={props.data.picture ? `http://localhost:5000/upload/profile/${props.data.picture}` : defaultProfile}
+            src={props.data.picture ? `${API_URL}upload/profile/${props.data.picture}` : defaultProfile}
             alt="Generic placeholder"
           />
           <Media.Body>

@@ -49,11 +49,16 @@ class index extends Component {
   }
 
   transaction = async (values) => {
-    await this.props.confirmation({ ...values, ...this.props.transaction.receiver, amountBalance: this.state.amountBelance - values.amount, dateTransaction: date, status: 'Transfer' })
+    const amount = Number(values.amount.replace(/[^0-9]/g, ''))
+    await this.props.confirmation({
+      note: values.note,
+      amount: amount,
+      ...this.props.transaction.receiver,
+      amountBalance: this.state.amountBelance - amount,
+      dateTransaction: date,
+      status: 'Transfer'
+    })
     this.props.history.push('/home-page/contact/input-amount/detail-transfer')
-  }
-  handleKeyUp = (values) => {
-    console.log(rupiah(values.target.value))
   }
 
   render () {

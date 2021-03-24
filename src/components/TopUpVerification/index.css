@@ -6,6 +6,7 @@
   border-radius: 25px;
   padding: 20px 0px;
 }
+
 .TopUpTitle {
   font-family: 'Nunito Sans';
   font-style: normal;
@@ -15,11 +16,81 @@
   color: #3A3D42;
   margin-bottom: 40px;
 }
+
 .form {
   display: flex;
   align-items: center;
 }
+
 .form .sort {
   position: relative;
   margin-left: 10px;
+}
+
+.center {
+  text-align: center;
+}
+
+.buttonLeft {
+  width: 80px;
+}
+
+.buttonRight {
+  width: 80px;
+  margin-bottom: 20px;
+}
+
+.fa-color {
+  color: #c4c4c4;
+}
+
+.thead {
+  cursor: pointer;
+}
+
+.thead:hover {
+  background-color: #dedede;
+}
+
+.image-transfer {
+  max-width: 150px;
+}
+
+.accept {
+  color: green;
+}
+
+.reject {
+  color: red;
+}
+
+.overflow {
+  overflow: scroll;
+  width: 100%;
+  max-height: 500px;
+}
+
+tbody {
+  display: block;
+  max-height: 500px;
+  overflow: auto;
+}
+
+thead,
+tbody tr {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+}
+
+thead {
+  width: calc(100% - 1em)
+}
+
+.no-td {
+  width: 50px;
+}
+
+.image-td {
+  width: 190px;
 }
