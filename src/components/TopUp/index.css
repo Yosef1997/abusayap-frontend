@@ -6,23 +6,25 @@
   border-radius: 25px;
   padding: 20px 0px;
 }
+
 .TopUpTitle {
   font-family: 'Nunito Sans';
   font-style: normal;
   font-weight: bold;
   font-size: 18px;
-  line-height: 25px;
   color: #3A3D42;
+  margin: 30px 20px 0;
 }
+
 .TopUpCard {
-  width: 790px;
   height: 88px;
   background: #FFFFFF;
   box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.05);
   border-radius: 10px;
   margin-top: 20px;
   padding: 30px 20px;
-} 
+}
+
 .TopUpList {
   font-family: 'Nunito Sans';
   font-style: normal;
@@ -31,9 +33,62 @@
   line-height: 27px;
   color: #7A7886;
 }
+
 .TopUpList span {
   font-weight: bold;
   font-size: 18px;
   color: #00D16C;
   margin-right: 20px;
+}
+
+.topup-wrapper {
+  background-color: #00D16C;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.05);
+  border-radius: 10px;
+  margin-top: 20px;
+  padding: 30px 20px;
+}
+
+.buttonTopUp {
+  background: #fff;
+  width: 60px;
+  height: 60px;
+  border-radius: 10px;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  margin-right: 20px;
+}
+
+.buttonTopUp:hover {
+  background: #b6b6b6;
+}
+
+.bank {
+  font-family: 'Nunito Sans';
+  color: #FFFFFF;
+  margin-bottom: 5px;
+}
+
+.nobank {
+  font-family: 'Nunito Sans';
+  color: #FFFFFF;
+  margin-bottom: 5px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.form-control {
+  height: 45px;
+  margin-bottom: 20px;
+}
+
+.title {
+  font-family: 'Nunito Sans';
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.error-text {
+  color: red;
 }

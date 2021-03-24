@@ -49,7 +49,30 @@ export const updateTopUpStatus = (token, id, value) => {
       console.log(err)
       dispatch({
         type: 'SET_TRANSACTION_MESSAGE',
-        payload: 'ss'
+        payload: 'Update Top U Failed'
+      })
+    }
+  }
+}
+export const createTopUp = (token, data) => {
+  return async dispatch => {
+    try {
+      const form = new FormData()
+      console.log(data)
+      Object.keys(data).forEach(key => {
+        form.append(key, data[key])
+      })
+      dispatch({
+        type: 'ERRORMSG',
+        payload: ''
+      })
+      const response = await http(token).post('topup', form)
+      console.log(response)
+    } catch (error) {
+      console.log(error.response)
+      dispatch({
+        type: 'ERRORMSG',
+        payload: 'Creted top up failed'
       })
     }
   }
