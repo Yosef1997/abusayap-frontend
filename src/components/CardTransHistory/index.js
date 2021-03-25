@@ -5,8 +5,8 @@ import defaultProfile from '../../assets/images/default-image.png'
 import rupiah from '../../helper/rupiah'
 import { connect } from 'react-redux'
 import { transactionHistoryNew } from '../../redux/action/transaction'
-
 import './style.scss'
+const { REACT_APP_API_URL: API_URL } = process.env
 
 class CardTransHistory extends Component {
   async componentDidMount () {
@@ -27,7 +27,7 @@ class CardTransHistory extends Component {
                 <div key={item.id}>
                   <div className="d-flex justify-content-between pt-3">
                     <div className="d-flex justify-content-center align-content-center">
-                      <Image src={item.picture ? `http://localhost:5000/upload/profile/${item.picture}` : defaultProfile} className="img-avatar mr-3" />
+                      <Image src={item.picture ? `${API_URL}upload/profile/${item.picture}` : defaultProfile} className="img-avatar mr-3" />
                       <div>
                         <p className="text-display-xs-bold-16 mb-2">{item.name}</p>
                         <p className="text-link-xs text-color-label">{item.status}</p>
