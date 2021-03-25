@@ -127,6 +127,7 @@ const MyChart = (props) => {
     try {
       const { token } = props.auth
       const response = await http(token).get('chart')
+      console.log('test', response.data.results)
       setChartData({
         day: response.data.results.map(item => item.day),
         color: response.data.results.reduce((value, item) => {
