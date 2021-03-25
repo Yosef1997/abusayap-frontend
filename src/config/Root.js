@@ -15,23 +15,25 @@ class Root extends Component {
     await this.props.detailUser(token, id)
   }
   componentDidMount () {
-    const { id } = this.props.auth.user
     const { token } = this.props.auth
-    io.onAny(() => {
-      if (id && token) {
-        io.once(`Receive_Transaction_${id}`, msg => {
-          console.log(msg)
-          this.getAmountTransaction(token, id)
-          this.getTransactionHistory(token)
-          this.getDetailUser(token, id)
-          this.props.notification(true)
-        })
-        io.once(`Update_Top_Up_${id}`, msg => {
-          console.log(msg)
-          this.getDetailUser(token, id)
-        })
-      }
-    })
+    if (token) {
+      const { id } = this.props.auth.user
+      io.onAny(() => {
+        if (id && token) {
+          io.once(`Receive_Transaction_${id}`, msg => {
+            console.log(msg)
+            this.getAmountTransaction(token, id)
+            this.getTransactionHistory(token)
+            this.getDetailUser(token, id)
+            this.props.notification(true)
+          })
+          io.once(`Update_Top_Up_${id}`, msg => {
+            console.log(msg)
+            this.getDetailUser(token, id)
+          })
+        }
+      })
+    }
   }
   render () {
     return <>{this.props.children}</>
