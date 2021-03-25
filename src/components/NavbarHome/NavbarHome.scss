@@ -6,8 +6,20 @@
   object-position: center;
   display: block;
 }
+
 .nav-home {
   .dropdown-toggle::after {
     content: none;
   }
+}
+
+.reddot {
+  width: 15px;
+  height: 15px;
+  background-color: red;
+  border-radius: 100%;
+  position: absolute;
+  top: 30px;
+  margin-left: 25px;
+  z-index: 1;
 }
