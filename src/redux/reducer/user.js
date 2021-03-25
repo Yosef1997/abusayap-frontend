@@ -2,7 +2,9 @@ const initialState = {
   results: null,
   contact: null,
   pageInfo: null,
-  errorMsg: ''
+  errorMsg: '',
+  notification: false
+
 }
 
 const userReducer = (state = initialState, action) => {
@@ -30,6 +32,12 @@ const userReducer = (state = initialState, action) => {
       return {
         ...state,
         errorMsg: action.payload
+      }
+    }
+    case 'NOTIFICATION': {
+      return {
+        ...state,
+        notification: action.payload
       }
     }
     default: {

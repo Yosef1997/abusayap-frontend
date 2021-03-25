@@ -6,6 +6,7 @@ import defaultProfile from '../../assets/images/default-image.png'
 import bell from '../../assets/icons/bell.png'
 import CardNotif from '../CardNotif'
 import { connect } from 'react-redux'
+import { notification } from '../../redux/action/user'
 const { REACT_APP_API_URL: API_URL } = process.env
 
 class NavbarHome extends Component {
@@ -13,6 +14,7 @@ class NavbarHome extends Component {
     notification: true
   }
   render () {
+    console.log(this.props.transaction)
     return (
       <Navbar className="nav-home">
         <Container>
@@ -32,8 +34,10 @@ class NavbarHome extends Component {
               <p className="m-0">{this.props.auth.user.phoneNumber !== null ? `+62 ${this.props.auth.user.phoneNumber}` : 'No PhoneNumber'}</p>
             </Nav.Link>
             <div>
-              <div className='reddot'></div>
+              {this.props.user.notification &&
+                <div className='reddot' ></div>}
               <DropdownButton
+                onClick={() => this.props.notification(false)}
                 menuAlign="right"
                 title={<Image src={bell} height={24} />}
                 variant="transparent"
@@ -50,7 +54,8 @@ class NavbarHome extends Component {
 }
 
 const mapStateToProps = state => ({
-  auth: state.auth
+  auth: state.auth,
+  user: state.user
 })
-
-export default connect(mapStateToProps)(NavbarHome)
+const mapDispatchToProps = { notification }
+export default connect(mapStateToProps, mapDispatchToProps)(NavbarHome)
