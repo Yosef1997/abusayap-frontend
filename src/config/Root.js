@@ -18,20 +18,17 @@ class Root extends Component {
     const { token } = this.props.auth
     if (token) {
       const { id } = this.props.auth.user
-      io.onAny(() => {
-        if (id && token) {
-          io.once(`Receive_Transaction_${id}`, msg => {
-            console.log(msg)
-            this.getAmountTransaction(token, id)
-            this.getTransactionHistory(token)
-            this.getDetailUser(token, id)
-            this.props.notification(true)
-          })
-          io.once(`Update_Top_Up_${id}`, msg => {
-            console.log(msg)
-            this.getDetailUser(token, id)
-          })
-        }
+
+      io.once(`Receive_Transaction_${id}`, msg => {
+        console.log(msg)
+        this.getAmountTransaction(token, id)
+        this.getTransactionHistory(token)
+        this.getDetailUser(token, id)
+        this.props.notification(true)
+      })
+      io.once(`Update_Top_Up_${id}`, msg => {
+        console.log(msg)
+        this.getDetailUser(token, id)
       })
     }
   }
