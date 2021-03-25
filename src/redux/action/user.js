@@ -67,3 +67,19 @@ export const editUserInfo = (token, id, firstname, lastname, email) => {
     }
   }
 }
+
+export const notification = (value) => {
+  return async dispatch => {
+    try {
+      dispatch({
+        type: 'NOTIFICATION',
+        payload: value
+      })
+    } catch (err) {
+      dispatch({
+        type: 'SET_USER_INFO_MESSAGE',
+        payload: 'errpr'
+      })
+    }
+  }
+}
