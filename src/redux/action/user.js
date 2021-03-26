@@ -1,4 +1,5 @@
 import http from '../../helper/http'
+import qs from 'querystring'
 
 export const detailUser = (token, id) => {
   return async dispatch => {
@@ -30,6 +31,34 @@ export const contact = (token, search, limit, page, sort, order) => {
         payload: ''
       })
       const response = await http(token).get(`contact?search=${search !== undefined ? search : ''}&limit=${limit !== undefined ? limit : 4}&page=${page !== undefined ? page : 1}&sort=${sort !== undefined ? sort : 'id'}&order=${order !== undefined ? order : 'ASC'}`)
+      dispatch({
+        type: 'CONTACT',
+        payload: response.data.results,
+        pageInfo: response.data.pageInfo
+      })
+    } catch (err) {
+      const { message } = err.response.data
+      dispatch({
+        type: 'SET_USER_MESSAGE',
+        payload: message
+      })
+    }
+  }
+}
+
+export const contactNew = (token, cond) => {
+  return async dispatch => {
+    try {
+      const query = cond
+        ? qs.stringify({
+          ...cond
+        })
+        : {}
+      dispatch({
+        type: 'SET_USER_MESSAGE',
+        payload: ''
+      })
+      const response = await http(token).get(`contact?${cond ? query : ''}`)
       dispatch({
         type: 'CONTACT',
         payload: response.data.results,
