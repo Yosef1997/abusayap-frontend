@@ -95,10 +95,10 @@ class index extends Component {
   // async componentDidMount () {
   //   await this.props.contact(this.props.auth.token)
   // }
-  // goToTransaction = async (value) => {
-  //   await this.props.selectReceiver(value)
-  //   this.props.history.push('/home-page/contact/input-amount')
-  // }
+  goToTransaction = async (value) => {
+    await this.props.selectReceiver(value)
+    this.props.history.push('/home-page/contact/input-amount')
+  }
   // changeText = (event) => {
   //   this.setState({ [event.target.name]: event.target.value }, async () => {
   //     await this.props.contact(this.props.auth.token, this.state.search)
