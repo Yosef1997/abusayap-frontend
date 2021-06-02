@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Col, Row, Container, Form, Alert, Spinner } from 'react-bootstrap'
-import { Link } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 import ButtonCustom from '../components/ButtonCustom'
 import LeftAuth from '../components/LeftAuth'
 import FormInput from '../components/Form/FormInput'
@@ -32,12 +32,13 @@ class SignUp extends Component {
   signUpPush = async (values) => {
     this.setState({ isLoading: true })
     await this.props.signUp(values.name, values.email, values.password)
+    this.setState({ isLoading: false })
     if (this.props.auth.message !== '') {
       this.setState({ message: this.props.auth.message })
     } else {
       this.setState({ message: this.props.auth.errorMsg })
     }
-    this.setState({ isLoading: false })
+    this.props.history.push('/login')
   }
   render () {
     return (
@@ -144,4 +145,4 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = { signUp }
 
-export default connect(mapStateToProps, mapDispatchToProps)(SignUp)
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(SignUp))
